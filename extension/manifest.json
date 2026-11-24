@@ -1,0 +1,69 @@
+{
+  "manifest_version": 3,
+  "name": "HybridGuard - Website Privacy Policy, Cookie & Permission Advisor",
+  "version": "1.0.0",
+  "description": "Everyday Website Privacy Policy, Cookie & Permission Advisor powered by on-device Gemini Nano inference and zero-PII cloud escalation.",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://www.google.com/*",
+    "http://localhost:3000/*",
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "HybridGuard Advisor"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "http://localhost:3000/*",
+        "http://127.0.0.1:3000/*"
+      ],
+      "js": ["content-bridge.js"],
+      "run_at": "document_start"
+    },
+    {
+      "matches": [
+        "https://www.google.com/*",
+        "*://*/*test-serp*"
+      ],
+      "js": ["content-serp.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "exclude_matches": [
+        "https://www.google.com/search*",
+        "https://*.google.com/search*",
+        "http://localhost:3000/*",
+        "http://127.0.0.1:3000/*"
+      ],
+      "js": ["content-page.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "icons/*",
+        "test-serp.html"
+      ],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}

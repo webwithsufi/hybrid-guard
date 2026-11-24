@@ -1,0 +1,8 @@
+# Extension local ignore
+node_modules/
+dist/
+.env
+.env.local
+*.env
+*.log
+.DS_Store
