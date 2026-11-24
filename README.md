@@ -195,7 +195,7 @@ hybrid-guard/
 ## 🚀 Step-by-Step Judge Setup Instructions
 
 ### 1. Prerequisites
-- **Google Chrome** (version 128+ recommended for on-device Gemini Nano).
+- **Google Chrome** (latest stable version / Chrome 138+ recommended for on-device Gemini Nano)
 - **Node.js** v18.0.0 or higher.
 - **npm** v9.0.0 or higher.
 
